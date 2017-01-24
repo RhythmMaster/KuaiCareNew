@@ -1,0 +1,95 @@
+//
+//  SettingViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/29.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "SettingViewController.h"
+
+@interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic ,strong)UITableView *tableView;
+@property (nonatomic ,strong)NSArray *imageArray;
+@property (nonatomic ,strong)NSArray *nameArray;
+@end
+
+@implementation SettingViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = RGB(247, 247, 247);
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"更多";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"icon-白色返回" name:@"" target:self action:@selector(leftClick)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KCWIDTH, KCHEIGHT) style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.nameArray = [NSArray arrayWithObjects:@"修改密码",@"服务条款", @"版本中心",nil];
+    
+    UIButton *signoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    signoutButton.backgroundColor = [UIColor whiteColor];
+    signoutButton.frame = CGRectMake(0, KCHEIGHT-80, KCWIDTH, 40);
+    [signoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    [signoutButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [signoutButton addTarget:self action:@selector(signoutClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:signoutButton];
+    
+    
+}
+-(void)signoutClick
+{
+    
+}
+-(void)leftClick
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"CELL";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.imageView.image = [UIImage imageNamed:@"icon_m_my_select"];
+        cell.textLabel.text = [self.nameArray objectAtIndex:indexPath.row];
+        cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    return cell;
+    
+    
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

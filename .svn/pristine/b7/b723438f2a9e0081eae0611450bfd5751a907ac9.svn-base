@@ -1,0 +1,129 @@
+//
+//  EditViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/27.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "EditViewController.h"
+
+@interface EditViewController ()
+@property (nonatomic ,strong)UITextField *textfield;
+@end
+
+@implementation EditViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = RGB(242, 242, 242);
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"编辑地址";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"icon-白色返回" name:@"" target:self action:@selector(leftClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem withBarItem:@"" name:@"保存" target:self action:@selector(rightClick)];
+    [self initUI];
+    
+}
+-(void)initUI
+{
+    NSArray *nameArray = [[NSArray alloc] initWithObjects:@"联系人：",@"电话：",@"地址：",@"详细地址：",@"默认地址：", nil];
+    NSArray *textfiledArray = [[NSArray alloc ] initWithObjects:@"请输入联系人姓名或从通讯录选择",@"请输入联系人电话",@"请输入你所在的小区或大厦",@"请输入详细地址，如门牌号", nil];
+    UIView *backView = [[UIView alloc] init];
+    backView.frame = CGRectMake(0, 64, KCWIDTH, 240);
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
+    for (int  i = 0; i<5 ; i++) {
+        UILabel *namelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15+45*i, KCWIDTH*0.25, 20)];
+        namelabel.font = [UIFont systemFontOfSize:14];
+        namelabel.text = [nameArray objectAtIndex:i];
+        [backView addSubview:namelabel];
+        
+        if (i == 0) {
+            UIButton *contactButton = [[UIButton alloc] init];
+            contactButton.frame = CGRectMake(20+KCWIDTH*0.8, 8, KCWIDTH*0.08, KCWIDTH*0.08);
+            contactButton.backgroundColor = [UIColor redColor];
+            [contactButton addTarget:self action:@selector(contactButtonClick) forControlEvents:UIControlEventTouchUpInside];
+            [backView addSubview:contactButton];
+        }
+        if (i == 2) {
+            UIButton *mapButton = [[UIButton alloc] init];
+            mapButton.frame = CGRectMake(20+KCWIDTH*0.8, 8+45*2, KCWIDTH*0.08, KCWIDTH*0.08);
+            [mapButton addTarget:self action:@selector(mapButtonClick) forControlEvents:UIControlEventTouchUpInside];
+            mapButton.backgroundColor = [UIColor redColor];
+            [backView addSubview:mapButton];
+        }
+        if (i == 4) {
+            UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(20+KCWIDTH*0.75, 8+45*i, KCWIDTH*0.2, KCWIDTH*0.1)];
+            switchView.on = YES;
+            [switchView addTarget:self action:@selector(switchViewClick) forControlEvents:UIControlEventTouchUpInside];
+            [backView addSubview:switchView];
+        
+        }
+        
+        
+    }
+    for (int i = 0; i<4; i++) {
+        self.textfield = [[UITextField alloc] initWithFrame:CGRectMake(20+KCWIDTH*0.2,  15+45*i, KCWIDTH*0.6, 20)];
+        self.textfield.placeholder = [textfiledArray objectAtIndex:i];
+        self.textfield.font = [UIFont systemFontOfSize:12];
+        [backView addSubview:self.textfield];
+    }
+    for (int i = 0; i<4; i++) {
+        UILabel *linelabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 45*(i+1) , KCWIDTH-5, 1)];
+        linelabel.backgroundColor = RGB(242, 242, 242);
+        [backView addSubview:linelabel];
+    }
+    
+    
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.textfield resignFirstResponder];
+}
+//点击了联系人按钮
+-(void)contactButtonClick
+{
+    
+    
+}
+//点击了转换器开关
+-(void)switchViewClick
+{
+    
+}
+//点击了地图按钮
+-(void)mapButtonClick
+{
+    
+}
+
+-(void)leftClick
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)rightClick
+{
+    
+    
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

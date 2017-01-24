@@ -1,0 +1,118 @@
+//
+//  PersonDetailViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/11/2.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "PersonDetailViewController.h"
+
+@interface PersonDetailViewController ()
+@property (nonatomic ,strong)NSArray *nameArray;
+@property (nonatomic ,strong)NSArray *placeholderArray1;
+@property (nonatomic ,strong)NSArray *placeholderArray2;
+@end
+
+@implementation PersonDetailViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = RGB(242, 242, 242);
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"个人资料";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"icon-白色返回" name:@"" target:self action:@selector(leftClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem withBarItem:@"" name:@"保存" target:self action:@selector(rightClick)];
+    self.nameArray = [NSArray arrayWithObjects:@"头像",@"昵称",@"姓名",@"性别",@"出生日期",@"身份证号",@"支付宝账号", nil];
+    self.placeholderArray1 = [NSArray arrayWithObjects:@"请设置昵称",@"你设置姓名", nil];
+    self.placeholderArray2 = [NSArray arrayWithObjects:@"请设置出生日期",@"请输入身份证号",@"请输入支付宝账户", nil];
+    [self initUI];
+}
+-(void)initUI
+{
+    UIView *backView = [[UIView alloc] init];
+    backView.frame = CGRectMake(0, 64+20, KCWIDTH, 44*7+40);
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
+    
+    for (int i= 0; i<7; i++) {
+        UILabel *namelabel = [[UILabel alloc] init];
+        namelabel.frame = CGRectMake(10, 0+43*i, KCWIDTH*0.22, 43);
+        namelabel.font = [UIFont systemFontOfSize:14];
+        namelabel.text = [self.nameArray objectAtIndex:i];
+        [backView addSubview:namelabel];
+        if (i == 0) {
+            UIButton *headButton = [[UIButton alloc] init];
+            headButton.frame = CGRectMake(KCWIDTH-30-50, 5, 35, 35);
+            headButton.backgroundColor = [UIColor redColor];
+            [backView addSubview:headButton];
+        }
+    }
+    for (int i = 0; i<7; i++) {
+        UILabel *linelabel = [[UILabel alloc] init];
+        linelabel.frame = CGRectMake(5, 43*(i+1), KCWIDTH-5, 1);
+        linelabel.backgroundColor = [UIColor redColor];
+        [backView addSubview:linelabel];
+    }
+    for (int i = 0; i<7; i++) {
+        UIButton *nextButton = [[UIButton alloc] init];
+        nextButton.frame = CGRectMake(KCWIDTH-30, 5+43*i, 20, 30);
+        nextButton.backgroundColor = [UIColor redColor];
+        [backView addSubview:nextButton];
+    }
+    for (int i= 1; i<3; i++) {
+        UITextField *textfield = [[UITextField alloc] init];
+        textfield.frame = CGRectMake(KCWIDTH*0.2, 43*i, KCWIDTH*0.7, 40);
+        textfield.placeholder = [self.placeholderArray1 objectAtIndex:i-1];
+        textfield.font = [UIFont systemFontOfSize:12];
+        textfield.textAlignment = NSTextAlignmentRight;
+        [backView addSubview:textfield];
+    }
+    for (int i = 4; i<7; i++) {
+        UITextField *textfield = [[UITextField alloc] init];
+        textfield.frame = CGRectMake(KCWIDTH*0.2, 43*i, KCWIDTH*0.7, 40);
+        textfield.placeholder = [self.placeholderArray2 objectAtIndex:i-4];
+        textfield.font = [UIFont systemFontOfSize:12];
+        textfield.font = [UIFont systemFontOfSize:12];
+        textfield.textAlignment = NSTextAlignmentRight;
+        [backView addSubview:textfield];
+    }
+    UILabel *bottomlabel = [[UILabel alloc] init];
+    bottomlabel.frame = CGRectMake(10, 44*7-15, KCWIDTH-10, 60);
+    bottomlabel.font = [UIFont systemFontOfSize:14];
+    bottomlabel.numberOfLines = 0;
+    bottomlabel.text = @"备注：姓名、身份证号、支付宝账户信息我们将为您保密，三者一致才能进行提现操作";
+    [backView addSubview:bottomlabel];
+    
+    
+}
+-(void)leftClick
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)rightClick
+{
+    
+    
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

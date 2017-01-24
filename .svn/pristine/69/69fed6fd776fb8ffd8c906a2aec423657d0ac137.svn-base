@@ -1,0 +1,34 @@
+//
+//  KuaiCare-Prefix.pch
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/24.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#ifndef KuaiCare_Prefix_pch
+#define KuaiCare_Prefix_pch
+
+#define  KCHEIGHT  [[UIScreen mainScreen] bounds].size.height
+#define  KCWIDTH  [[UIScreen mainScreen] bounds].size.width
+#define RGB(a,b,c)  [UIColor colorWithRed:a/255.0 green:b/255.0 blue:c/255.0 alpha:1.0]
+//取view的坐标及长宽
+#define W(view)    view.frame.size.width
+#define H(view)    view.frame.size.height
+#define X(view)    view.frame.origin.x
+#define Y(view)    view.frame.origin.y
+
+#define Y_H(view) Y(view) + H(view)
+#define X_W(view) X(view) + W(view)
+
+
+#import "AFNetworking.h"
+#import "Masonry.h"
+#import "LoginViewController.h"
+#import "UIBarButtonItem+KCBarButtonItem.h"
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* KuaiCare_Prefix_pch */

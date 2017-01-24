@@ -1,0 +1,205 @@
+//
+//  FuwuInfoTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/26.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "FuwuInfoTableViewCell.h"
+
+@implementation FuwuInfoTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        
+        
+        _lineLabel = [[UILabel alloc] init];
+        _lineLabel.backgroundColor = RGB(38, 107, 255);
+        _lineLabel.backgroundColor = RGB(38, 107, 255);
+        _leibieLabel = [[UILabel alloc] init];
+        _leibieLabel.text = @"服务类别 ：褥疮护理";
+        _leibieLabel.textColor = [UIColor blackColor];
+        _zhifustatusLabel = [[UILabel alloc] init];
+        _zhifustatusLabel.textAlignment = NSTextAlignmentRight;
+        _zhifustatusLabel.textColor = [UIColor redColor];
+        _zhifustatusLabel.text = @"待支付";
+        _touxiangView = [[UIImageView alloc] init];
+        _nameLabel = [[UILabel alloc] init];
+        _xiangmuLabel = [[UILabel alloc] init];
+        _hospitalabel = [[UILabel alloc] init];
+        _pricelabel = [[UILabel alloc] init];
+        _jiuzhenlabel = [[UILabel alloc] init];
+        _addresslabel = [[UILabel alloc] init];
+        _xiadantimelabel = [[UILabel alloc] init];
+        _fuwutimelabel = [[UILabel alloc] init];
+        _dingdanButton = [[UIButton alloc] init];
+        _zhifuButton = [[UIButton alloc] init];
+        _horizonLabel1 = [[UILabel alloc] init];
+        _horizonLabel2 = [[UILabel alloc] init];
+       
+        
+        
+        [self.contentView addSubview:_lineLabel];
+        [self.contentView addSubview:_leibieLabel];
+        [self.contentView addSubview:_zhifustatusLabel];
+        [self.contentView addSubview:_touxiangView];
+        [self.contentView addSubview:_nameLabel];
+        [self.contentView addSubview:_xiangmuLabel];
+        [self.contentView addSubview:_hospitalabel];
+        [self.contentView addSubview:_pricelabel];
+        [self.contentView addSubview:_jiuzhenlabel];
+        [self.contentView addSubview:_addresslabel];
+        [self.contentView addSubview:_xiadantimelabel];
+        [self.contentView addSubview:_fuwutimelabel];
+        [self.contentView addSubview:_dingdanButton];
+        [self.contentView addSubview:_zhifuButton];
+        [self.contentView addSubview:_horizonLabel1];
+        [self.contentView addSubview:_horizonLabel2];
+        
+        
+        _touxiangView.backgroundColor = [UIColor redColor];
+        _nameLabel.backgroundColor = [UIColor redColor];
+        _xiangmuLabel.backgroundColor = [UIColor redColor];
+        _hospitalabel.backgroundColor = [UIColor redColor];
+        _pricelabel.backgroundColor = [UIColor redColor];
+        _jiuzhenlabel.backgroundColor = [UIColor redColor];
+        _addresslabel.backgroundColor = [UIColor redColor];
+        _xiadantimelabel.backgroundColor = [UIColor redColor];
+        _fuwutimelabel.backgroundColor = [UIColor redColor];
+        _dingdanButton.backgroundColor = [UIColor redColor];
+        _zhifuButton.backgroundColor = [UIColor redColor];
+        _horizonLabel1.backgroundColor = [UIColor redColor];
+        _horizonLabel2.backgroundColor = [UIColor redColor];
+
+        
+        
+
+    }
+    return self;
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(20);
+        make.height.equalTo(self.mas_height).multipliedBy(0.1);
+        make.width.equalTo(self.mas_height).multipliedBy(0.02);
+    }];
+    [_leibieLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_lineLabel.mas_right).offset(10);
+        make.top.offset(20);
+        make.height.equalTo(self.mas_height).multipliedBy(0.1);
+        make.width.equalTo(self.mas_width).multipliedBy(0.5);
+    }];
+    
+    [_zhifustatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(15);
+        make.right.offset(-10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+        make.height.equalTo(self.mas_height).multipliedBy(0.15);
+    }];
+    
+    [_horizonLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_lineLabel.mas_bottom).offset(20);
+        make.left.offset(0);
+        make.width.equalTo(self.mas_width);
+        make.height.equalTo(_leibieLabel.mas_height).multipliedBy(0.01);
+    }];
+    [_touxiangView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_horizonLabel1.mas_bottom).offset(20);
+        make.left.offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.2);
+        make.width.equalTo(self.mas_height).multipliedBy(0.2);
+    }];
+    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_horizonLabel1.mas_bottom).offset(15);
+        make.left.equalTo(_touxiangView.mas_right).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+        make.height.equalTo(self.mas_height).multipliedBy(0.08);
+    }];
+    
+    [_hospitalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_horizonLabel1.mas_bottom).offset(15);
+        make.left.equalTo(_nameLabel.mas_right).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.4);
+        make.height.equalTo(self.mas_height).multipliedBy(0.08);
+    }];
+    [_xiangmuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_nameLabel.mas_bottom).offset(10);
+        make.left.equalTo(_touxiangView.mas_right).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+        make.height.equalTo(self.mas_height).multipliedBy(0.08);
+
+    }];
+    [_pricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_xiangmuLabel.mas_right).offset(60);
+        make.top.equalTo(_nameLabel.mas_bottom).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+        make.height.equalTo(self.mas_height).multipliedBy(0.08);
+    }];
+    
+    [_jiuzhenlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(20);
+        make.top.equalTo(_touxiangView.mas_bottom).offset(20);
+        make.width.equalTo(self.mas_width).multipliedBy(0.7);
+        make.height.equalTo(self.mas_height).multipliedBy(0.05);
+    }];
+    [_addresslabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(20);
+        make.top.equalTo(_jiuzhenlabel.mas_bottom).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.7);
+        make.height.equalTo(self.mas_height).multipliedBy(0.05);
+    }];
+    [_xiadantimelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(20);
+        make.top.equalTo(_addresslabel.mas_bottom).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.7);
+        make.height.equalTo(self.mas_height).multipliedBy(0.05);
+    }];
+
+    [_fuwutimelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(20);
+        make.top.equalTo(_xiadantimelabel.mas_bottom).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.7);
+        make.height.equalTo(self.mas_height).multipliedBy(0.05);
+    }];
+    
+    [_horizonLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_fuwutimelabel.mas_bottom).offset(15);
+        make.left.offset(0);
+        make.width.equalTo(self.mas_width);
+        make.height.equalTo(_leibieLabel.mas_height).multipliedBy(0.02);;
+    }];
+    
+    [_zhifuButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-10);
+        make.top.equalTo(_horizonLabel2.mas_bottom).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.17);
+        make.height.equalTo(self.mas_height).multipliedBy(0.08);
+    }];
+    
+    [_dingdanButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_zhifuButton.mas_left).offset(-10);
+        make.top.equalTo(_horizonLabel2.mas_bottom).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.17);
+        make.height.equalTo(self.mas_height).multipliedBy(0.08);
+    }];
+
+    
+    
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

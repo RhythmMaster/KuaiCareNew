@@ -1,0 +1,147 @@
+//
+//  SelectjiuzhenTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/27.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "SelectjiuzhenTableViewCell.h"
+
+@implementation SelectjiuzhenTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _titleButton = [[UIButton alloc] init];
+        _namelabel = [[UILabel alloc] init];
+        _phonelabel = [[UILabel alloc] init];
+        _selectButton = [[UIButton alloc] init];
+        _morenlabel = [[UILabel alloc] init];
+        _editButton = [[UIButton alloc] init];
+        _editlabel = [[UILabel alloc] init];
+        _removeButton = [[UIButton alloc] init];
+        _removelabel = [[UILabel alloc] init];
+        _linelabel = [[UILabel alloc] init];
+        
+        [self.contentView addSubview:_namelabel];
+        [self.contentView addSubview:_phonelabel];
+        [self.contentView addSubview:_titleButton];
+        [self.contentView addSubview:_selectButton];
+        [self.contentView addSubview:_morenlabel];
+        [self.contentView addSubview:_editButton];
+        [self.contentView addSubview:_editlabel];
+        [self.contentView addSubview:_removeButton];
+        [self.contentView addSubview:_removelabel];
+        [self.contentView addSubview:_linelabel];
+        
+        _namelabel.backgroundColor = [UIColor redColor];
+        _phonelabel.backgroundColor = [UIColor redColor];
+        _titleButton.backgroundColor = [UIColor redColor];
+        _selectButton.backgroundColor = [UIColor redColor];
+        _morenlabel.backgroundColor = [UIColor redColor];
+        _editButton.backgroundColor = [UIColor redColor];
+        _editlabel.backgroundColor = [UIColor redColor];
+        _removelabel.backgroundColor = [UIColor redColor];
+        _removeButton.backgroundColor = [UIColor redColor];
+        _linelabel.backgroundColor = [UIColor redColor];
+        
+    }
+    return self;
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(10);
+        make.left.offset(10);
+        make.height.equalTo(self.mas_height).multipliedBy(0.36);
+        make.width.equalTo(self.mas_height).multipliedBy(0.36);
+    }];
+    
+    [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(10);
+        make.left.equalTo(_titleButton.mas_right).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+    }];
+    [_phonelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_namelabel.mas_bottom).offset(10);
+        make.left.equalTo(_titleButton.mas_right).offset(10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+        make.height.equalTo(self.mas_height).multipliedBy(0.15);
+        
+    }];
+    
+    [_linelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.equalTo(_titleButton.mas_bottom).offset(15);
+        make.width.equalTo(self.mas_width);
+        make.height.equalTo(_namelabel.mas_height).multipliedBy(0.05);
+        
+    }];
+    [_selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_linelabel.mas_bottom).offset(15);
+        make.left.offset(10);
+        make.height.equalTo(self.mas_height).multipliedBy(0.14);
+        make.width.equalTo(self.mas_height).multipliedBy(0.14);
+    }];
+    [_morenlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_selectButton.mas_right).offset(5);
+        make.top.equalTo(_linelabel.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.14);
+        make.width.equalTo(self.mas_width).multipliedBy(0.4);
+        
+    }];
+    
+    [_removelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-10);
+        make.top.equalTo(_linelabel.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.14);
+        make.width.equalTo(self.mas_height).multipliedBy(0.15);
+        
+    }];
+    
+    [_removeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_removelabel.mas_left).offset(-5);
+        make.top.equalTo(_linelabel.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.14);
+        make.width.equalTo(self.mas_height).multipliedBy(0.14);
+        
+    }];
+    
+    [_editlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_removeButton.mas_left).offset(-10);
+        make.top.equalTo(_linelabel.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.14);
+        make.width.equalTo(self.mas_height).multipliedBy(0.15);
+        
+    }];
+    
+    
+    [_editButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_editlabel.mas_left).offset(-5);
+        make.top.equalTo(_linelabel.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.14);
+        make.width.equalTo(self.mas_height).multipliedBy(0.14);
+        
+    }];
+    
+    
+    
+    
+}
+
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

@@ -1,0 +1,108 @@
+//
+//  WeiyuFirstTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/28.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "WeiyuFirstTableViewCell.h"
+
+@implementation WeiyuFirstTableViewCell
+
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _verticalabel = [[UILabel alloc] init];
+        _namelabel = [[UILabel alloc] init];
+        _priclabel = [[UILabel alloc] init];
+        _introlabel = [[UILabel alloc] init];
+        _headView = [[UIImageView alloc] init];
+        _orderButton = [[UIButton alloc] init];
+        _horizonlabel = [[UILabel alloc] init];
+
+        [self.contentView addSubview:_verticalabel];
+        [self.contentView addSubview:_namelabel];
+        [self.contentView addSubview:_priclabel];
+        [self.contentView addSubview:_introlabel];
+        [self.contentView addSubview:_headView];
+        [self.contentView addSubview:_orderButton];
+        [self.contentView addSubview:_horizonlabel];
+
+        _verticalabel.backgroundColor = [UIColor redColor];
+        _namelabel.backgroundColor = [UIColor redColor];
+        _priclabel.backgroundColor = [UIColor redColor];
+        _introlabel.backgroundColor = [UIColor redColor];
+        _headView.backgroundColor = [UIColor redColor];
+        _orderButton.backgroundColor = [UIColor redColor];
+        _horizonlabel.backgroundColor = [UIColor redColor];
+
+    }
+    return self;
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_verticalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.13);
+        make.width.equalTo(self.mas_height).multipliedBy(0.02);
+    }];
+    [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_verticalabel.mas_right).offset(10);
+        make.top.offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.12);
+        make.width.equalTo(self.mas_width).multipliedBy(0.5);
+    }];
+    [_priclabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-10);
+        make.top.offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.12);
+        make.width.equalTo(self.mas_width).multipliedBy(0.4);
+    }];
+    [_horizonlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.equalTo(_namelabel.mas_bottom).offset(15);
+        make.width.equalTo(self.mas_width);
+        make.height.equalTo(_namelabel.mas_height).multipliedBy(0.05);
+    }];
+    
+    [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(10);
+        make.top.equalTo(_horizonlabel.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.22);
+        make.width.equalTo(self.mas_height).multipliedBy(0.22);
+    }];
+    [_introlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_horizonlabel.mas_bottom).offset(15);
+        make.left.equalTo(_headView.mas_right).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.22);
+        make.width.equalTo(self.mas_width).multipliedBy(0.7);
+    }];
+    
+    [_orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.top.equalTo(_headView.mas_bottom).offset(15);
+        make.height.equalTo(self.mas_height).multipliedBy(0.2);
+    }];
+    
+    
+    
+    
+}
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

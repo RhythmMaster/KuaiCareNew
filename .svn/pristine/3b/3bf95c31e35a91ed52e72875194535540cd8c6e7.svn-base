@@ -1,0 +1,76 @@
+//
+//  SuggestViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/29.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "SuggestViewController.h"
+#import <QuartzCore/QuartzCore.h>
+@interface SuggestViewController ()
+
+@end
+
+@implementation SuggestViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = RGB(247, 247, 247);
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"意见反馈";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"icon-白色返回" name:@"" target:self action:@selector(leftClick)];
+    
+    [self initUI];
+}
+-(void)initUI
+{
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 64+50, KCWIDTH-40, KCHEIGHT*0.2)];
+    textView.text = @"请输入您的反馈意见，我们将持续改进";
+    [textView.layer setCornerRadius:10];
+    [self.view addSubview:textView];
+    
+    UIButton *submitButton = [[UIButton alloc] init];
+    submitButton.layer.cornerRadius = 10;
+    submitButton.layer.masksToBounds = YES;
+    submitButton.frame = CGRectMake(KCWIDTH/3, KCHEIGHT-100, KCWIDTH/3, 40);
+    [submitButton setTitle:@"提交意见" forState:UIControlStateNormal];
+    submitButton.backgroundColor = RGB(38, 107, 255);
+    [submitButton addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:submitButton];
+    
+    
+}
+//点击了提交按钮
+-(void)submitClick
+{
+    
+    
+}
+-(void)leftClick
+{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

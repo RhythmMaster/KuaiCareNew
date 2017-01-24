@@ -1,0 +1,71 @@
+//
+//  OrderFirstTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/11/3.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "OrderFirstTableViewCell.h"
+
+@implementation OrderFirstTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _contactlabel = [[UILabel alloc] init];
+        _addresslabel = [[UILabel alloc] init];
+        _jiuzhenlabel = [[UILabel alloc] init];
+        
+        [self.contentView addSubview:_contactlabel];
+        [self.contentView addSubview:_addresslabel];
+        [self.contentView addSubview:_jiuzhenlabel];
+
+        _contactlabel.backgroundColor = [UIColor redColor];
+        _addresslabel.backgroundColor = [UIColor redColor];
+        _jiuzhenlabel.backgroundColor = [UIColor redColor];
+
+        
+    }
+    
+    
+    return self;
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_contactlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(10);
+        make.top.offset(8);
+        make.width.equalTo(self.mas_width).multipliedBy(0.6);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+    }];
+    [_addresslabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(10);
+        make.top.equalTo(_contactlabel.mas_bottom).offset(8);
+        make.width.equalTo(self.mas_width).multipliedBy(0.6);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+    }];
+    [_jiuzhenlabel  mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(10);
+        make.top.equalTo(_addresslabel.mas_bottom).offset(8);
+        make.width.equalTo(self.mas_width).multipliedBy(0.6);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+        
+    }];
+    
+    
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

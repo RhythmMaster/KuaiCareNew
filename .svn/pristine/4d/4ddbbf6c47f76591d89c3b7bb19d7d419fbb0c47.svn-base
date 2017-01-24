@@ -1,0 +1,120 @@
+//
+//  YuetixianViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/11/2.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "YuetixianViewController.h"
+
+@interface YuetixianViewController ()
+
+@end
+
+@implementation YuetixianViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = RGB(242, 242, 242);
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"余额提现";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"" name:@"取消" target:self action:@selector(leftClick)];
+     self.navigationItem.rightBarButtonItem = [UIBarButtonItem withBarItem:@"" name:@"取消" target:self action:@selector(rightClick)];
+    [self initUI];
+}
+-(void)initUI
+{
+    UIView *backView = [[UIView alloc] init];
+    backView.frame = CGRectMake(20, 64+20, KCWIDTH-40, 220);
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
+    
+    UILabel *namelabel = [[UILabel alloc] init];
+    namelabel.frame =CGRectMake(20, 10, KCWIDTH*0.25, 20);
+    namelabel.text = @"到支付宝";
+    [backView addSubview:namelabel];
+    
+    UILabel *phonelabel = [[UILabel alloc] init];
+    phonelabel.frame = CGRectMake(60+KCWIDTH*0.2, 10, KCWIDTH*0.4, 20);
+    phonelabel.backgroundColor = [UIColor redColor];
+    [backView addSubview:phonelabel];
+    
+    UILabel *tixianlabel = [[UILabel alloc] init];
+    tixianlabel.frame = CGRectMake(20, 10+20+40, KCWIDTH*0.4, 20);
+    tixianlabel.text = @"提现金额";
+    [backView addSubview:tixianlabel];
+    
+    UITextField *tixiantextfield = [[UITextField alloc] init];
+    tixiantextfield.frame = CGRectMake(20, 10+20+40+20+10, KCWIDTH*0.8, 40);
+    [backView addSubview:tixiantextfield];
+    
+    UILabel *linelabel = [[UILabel alloc] init];
+    linelabel.frame = CGRectMake(0, 10+20+40+20+10+40+10, KCWIDTH, 1);
+    linelabel.backgroundColor = RGB(242, 242, 242);
+    [backView addSubview:linelabel];
+    
+    UILabel *lingqianlabel = [[UILabel alloc] init];
+    lingqianlabel.frame = CGRectMake(20, 10+20+40+20+10+40+10+20, KCWIDTH*0.3, 20);
+    lingqianlabel.backgroundColor = [UIColor redColor];
+    [backView addSubview:lingqianlabel];
+    
+    UIButton *lingqianButton = [[UIButton alloc] init];
+    lingqianButton.frame = CGRectMake(20+KCWIDTH*0.3+10, 10+20+40+20+10+40+10+20, KCWIDTH*0.4, 20);
+    [lingqianButton setTitle:@"全部提现" forState:UIControlStateNormal];
+    [lingqianButton setTitleColor:RGB(38, 107, 255) forState:UIControlStateNormal];
+    [backView addSubview:lingqianButton];
+    
+    UILabel *timelabel = [[UILabel alloc] init];
+    timelabel.frame = CGRectMake(0, 64+20+220, KCWIDTH, 20);
+    timelabel.text = @"2小时后到账";
+    timelabel.textColor = RGB(123, 123, 123);
+    timelabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:timelabel];
+    
+    UIButton *tixianbutton = [[UIButton alloc] init];
+    tixianbutton.frame = CGRectMake(15, 64+20+220+30, KCWIDTH-30, 45);
+    [tixianbutton addTarget:self action:@selector(tixianButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    tixianbutton.layer.cornerRadius = 5;
+    tixianbutton.layer.masksToBounds = YES;
+    [tixianbutton setTitle:@"提现" forState:UIControlStateNormal];
+    [tixianbutton setBackgroundColor:RGB(38, 107, 255)];
+    [self.view addSubview:tixianbutton];
+    
+}
+//点击了提现按钮
+-(void)tixianButtonClick
+{
+    
+    
+}
+-(void)leftClick
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)rightClick
+{
+    
+    
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

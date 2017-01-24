@@ -1,0 +1,57 @@
+//
+//  OrderPingjiaSecondTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/11/3.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "OrderPingjiaSecondTableViewCell.h"
+
+@implementation OrderPingjiaSecondTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _namelabel = [[UILabel alloc] init];
+        _xingView = [[UIImageView alloc] init];
+        
+        [self.contentView addSubview:_namelabel];
+        [self.contentView addSubview:_xingView];
+        
+        _xingView.backgroundColor = [UIColor redColor];
+        
+    }
+    return self;
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(20);
+        make.top.offset(20);
+        make.bottom.offset(-20);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+    }];
+    [_xingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(20);
+        make.bottom.offset(-20);
+        make.left.equalTo(_namelabel.mas_right).offset(30);
+        make.width.equalTo(self.mas_width).multipliedBy(0.4);
+    }];
+    
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

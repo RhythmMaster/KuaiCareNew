@@ -1,0 +1,76 @@
+//
+//  WeiyuThirdTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/28.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "WeiyuThirdTableViewCell.h"
+
+@implementation WeiyuThirdTableViewCell
+
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _verticalabel = [[UILabel alloc] init];
+        _namelabel = [[UILabel alloc] init];
+        _horizonlabel = [[UILabel alloc] init];
+        _messagelabel = [[UILabel alloc] init];
+        
+        [self.contentView addSubview:_verticalabel];
+        [self.contentView addSubview:_namelabel];
+        [self.contentView addSubview:_horizonlabel];
+        [self.contentView addSubview:_messagelabel];
+
+        _verticalabel.backgroundColor = [UIColor redColor];
+        _namelabel.backgroundColor = [UIColor redColor];
+        _horizonlabel.backgroundColor = [UIColor redColor];
+        _messagelabel.backgroundColor = [UIColor redColor];
+
+    }
+    return self;
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_verticalabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(10);
+        make.left.offset(0);
+        make.height.equalTo(self.mas_height).multipliedBy(0.1);
+        make.width.equalTo(self.mas_height).multipliedBy(0.02);
+    }];
+   [_namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.top.offset(10);
+       make.left.equalTo(_verticalabel.mas_right).offset(10);
+       make.width.equalTo(self.mas_width).multipliedBy(0.6);
+       make.height.equalTo(self.mas_height).multipliedBy(0.1);
+   }];
+   [_horizonlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.top.equalTo(_verticalabel.mas_bottom).offset(10);
+       make.left.offset(0);
+       make.width.equalTo(self.mas_width);
+       make.height.equalTo(_verticalabel.mas_height).multipliedBy(0.01);
+   }];
+   [_messagelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.top.equalTo(_horizonlabel.mas_bottom).offset(10);
+       make.left.offset(10);
+       make.right.offset(-10);
+       make.height.equalTo(self.mas_height).multipliedBy(0.75);
+   }];
+    
+    
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

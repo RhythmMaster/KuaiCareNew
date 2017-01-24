@@ -1,0 +1,396 @@
+//
+//  RegisterViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/24.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "RegisterViewController.h"
+#import "LoginViewController.h"
+@interface RegisterViewController ()<UITextFieldDelegate>
+@property (nonatomic,strong)UITextField *tfUserPhone;
+@property (nonatomic,strong)UITextField *tfUserPass;
+@property (nonatomic,strong)UITextField *tfCodePass;
+@property (nonatomic,strong)UIButton *registerButton;
+@property (nonatomic,strong)UIButton *selectButton;
+
+
+@end
+
+@implementation RegisterViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self initUI];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(void)initUI
+{
+    UIView *view1 = [[UIView alloc] init];
+    view1.frame = CGRectMake(0, 0, KCWIDTH, KCHEIGHT*0.45);
+    [self.view addSubview:view1];
+    
+    UIView *view2 = [[UIView alloc] init];
+    view2.frame = CGRectMake(0, KCHEIGHT*0.45, KCWIDTH, KCHEIGHT*0.25);
+    [self.view addSubview:view2];
+    
+    
+    UIView *view3 = [[UIView alloc] init];
+        view3.frame = CGRectMake(0, KCHEIGHT*0.7, KCWIDTH, KCHEIGHT*0.3);
+    [self.view addSubview:view3];
+    
+    
+    UIImageView *LogoView = [[UIImageView alloc] init];
+    LogoView.image = [UIImage imageNamed:@"Loginlogo"];
+    [view1 addSubview:LogoView];
+    UILabel *logolabel1 = [[UILabel alloc] init];
+    logolabel1.text = @"快护理";
+    logolabel1.textColor = RGB(38, 107, 255);
+    logolabel1.textAlignment = NSTextAlignmentCenter;
+    logolabel1.font = [UIFont systemFontOfSize:16];
+    [view1 addSubview:logolabel1];
+    
+    UILabel *logolabel2 = [[UILabel alloc] init];
+    logolabel2.text = @"Faster Attendance";
+    logolabel2.textColor = RGB(38, 107, 255);
+    logolabel2.textAlignment = NSTextAlignmentCenter;
+    logolabel2.font = [UIFont systemFontOfSize:14];
+    [view1 addSubview:logolabel2];
+    
+    [LogoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view1.mas_centerX);
+        make.top.offset(80);
+        make.width.equalTo(view1.mas_width).multipliedBy(0.3);
+        make.height.equalTo(view1.mas_width).multipliedBy(0.3);
+    }];
+    
+    [logolabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view1.mas_centerX);
+        make.top.equalTo(LogoView.mas_bottom).offset(5);
+        make.width.equalTo(view1.mas_width).multipliedBy(0.5);
+        make.height.equalTo(view1.mas_height).multipliedBy(0.1);
+    }];
+    
+    [logolabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(view1.mas_centerX);
+        make.top.equalTo(logolabel1.mas_bottom).offset(5);
+        make.width.equalTo(view1.mas_width).multipliedBy(0.5);
+        make.height.equalTo(view1.mas_height).multipliedBy(0.05);
+    }];
+    
+    UIImageView *phoneView = [[UIImageView alloc] init];
+    phoneView.image = [UIImage imageNamed:@"bg_edittext_login"];
+    [view2 addSubview:phoneView];
+    
+    UIImageView *phoneIcon = [[UIImageView alloc] init];
+    phoneIcon.image = [UIImage imageNamed:@"icon-请输入用户名"];
+    [view2 addSubview:phoneIcon];
+    
+    _tfUserPhone = [[UITextField alloc] init];
+    [_tfUserPhone setTextColor:[UIColor whiteColor]];
+    [_tfUserPhone.placeholder setValue:RGB(38, 107, 255) forKeyPath:@"placeholderLabel.textColor"];
+    _tfUserPhone.font = [UIFont systemFontOfSize:14];
+    [_tfUserPhone setPlaceholder:[NSString stringWithFormat:@"请输入手机号"]];
+    _tfUserPhone.clearButtonMode = UITextFieldViewModeAlways;
+    _tfUserPhone.delegate = self;
+    [view2 addSubview:_tfUserPhone];
+    
+    UIImageView *pswView = [[UIImageView alloc] init];
+    pswView.image = [UIImage imageNamed:@"bg_edittext_login"];;
+    [view2 addSubview:pswView];
+    
+    UIImageView *pswIcon = [[UIImageView alloc] init];
+    pswIcon.image = [UIImage imageNamed:@"icon-请输入密码"];
+    [view2 addSubview:pswIcon];
+    
+   
+    
+    UIButton *pswSeebutton = [[UIButton alloc] init];
+    [pswSeebutton setBackgroundImage:[UIImage imageNamed:@"icon_pw_see"] forState:UIControlStateNormal];
+    [view2 addSubview:pswSeebutton];
+    
+    
+    
+    
+    _tfUserPass = [[UITextField alloc] init];
+    [_tfUserPass setTextColor:[UIColor whiteColor]];
+    [_tfUserPass.placeholder setValue:RGB(38, 107, 255) forKeyPath:@"placeholderLabel.textColor"];
+    [_tfUserPass setPlaceholder:@"请输入密码(6-20位，字母和数字组合)"];
+    _tfUserPass.clearButtonMode = UITextFieldViewModeAlways;
+    _tfUserPass.delegate = self;
+    _tfUserPass.font = [UIFont systemFontOfSize:14];
+    [_tfUserPass setSecureTextEntry:YES];
+    [view2 addSubview:_tfUserPass];
+    
+  
+    
+    UIImageView *codeView = [[UIImageView alloc] init];
+    codeView.image = [UIImage imageNamed:@"bg_edittext_login2"];
+    [view2 addSubview:codeView];
+    
+    UIImageView *codeIcon = [[UIImageView alloc] init];
+    codeIcon.image = [UIImage imageNamed:@"icon-请输入密码"];
+    [view2 addSubview:codeIcon];
+    
+    _tfCodePass = [[UITextField alloc] init];
+   // _tfCodePass.borderStyle = UITextBorderStyleRoundedRect;
+    _tfCodePass.font = [UIFont systemFontOfSize:14];
+    [_tfCodePass setTextColor:[UIColor whiteColor]];
+    [_tfCodePass.placeholder setValue:RGB(38, 107, 255) forKeyPath:@"placeholderLabel.textColor"];
+    [_tfCodePass setPlaceholder:@"请输入验证码"];
+    _tfCodePass.clearButtonMode = UITextFieldViewModeAlways;
+    _tfCodePass.delegate = self;
+    [view2 addSubview:_tfCodePass];
+    
+    UIButton *getcodeButton = [[UIButton alloc] init];
+    [getcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    getcodeButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [view2 addSubview:getcodeButton];
+    
+    
+
+    [phoneView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(10);
+        make.centerX.equalTo(view2.mas_centerX);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.8);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.25);
+    }];
+    [phoneIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(phoneView.mas_top).offset(8);
+        make.left.equalTo(phoneView.mas_left).offset(20);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.05);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.15);
+    }];
+    [_tfUserPhone mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(phoneView.mas_top).offset(8);
+        make.left.equalTo(phoneIcon.mas_right).offset(15);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.6);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.15);
+    }];
+    
+    
+    
+    [codeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(phoneView.mas_bottom).offset(15);
+        make.centerX.equalTo(view2.mas_centerX);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.8);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.25);
+        
+    }];
+    
+    [codeIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(codeView.mas_top).offset(8);
+        make.left.equalTo(codeView.mas_left).offset(20);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.05);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.15);
+    }];
+    
+    [_tfCodePass mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(codeView.mas_top).offset(8);
+        make.left.equalTo(pswIcon.mas_right).offset(15);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.4);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.15);
+    }];
+    
+    [getcodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(codeView.mas_top).offset(0);
+        make.left.equalTo(_tfCodePass.mas_right).offset(0);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.25);
+        make.height.equalTo(codeView.mas_height);
+        
+    }];
+    
+    
+    [pswView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(codeView.mas_bottom).offset(15);
+        make.centerX.equalTo(view2.mas_centerX);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.8);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.25);
+    }];
+    [pswIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(pswView.mas_top).offset(8);
+        make.left.equalTo(pswView.mas_left).offset(20);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.05);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.15);
+    }];
+    [_tfUserPass mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(pswView.mas_top).offset(8);
+        make.left.equalTo(pswIcon.mas_right).offset(15);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.6);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.15);
+    }];
+    
+    [pswSeebutton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(pswView.mas_top).offset(15);
+        make.left.equalTo(_tfUserPass.mas_right).offset(-8);
+        make.width.equalTo(view2.mas_width).multipliedBy(0.06);
+        make.height.equalTo(view2.mas_height).multipliedBy(0.08);
+    }];
+    
+    _selectButton = [[UIButton alloc] init];
+    _selectButton.selected = NO;
+    [_selectButton setImage:[UIImage imageNamed:@"复选框未选中-"] forState:UIControlStateNormal];
+    [_selectButton setImage:[UIImage imageNamed:@"复选框选中"]  forState:UIControlStateSelected];
+    [_selectButton addTarget:self action:@selector(selectbuttonClick) forControlEvents:UIControlEventTouchUpInside];
+    [view3 addSubview:_selectButton];
+    
+    UIButton *xieyiButton = [[UIButton  alloc] init];
+    [xieyiButton setTitleColor:RGB(38, 107, 255) forState:UIControlStateNormal];
+    [xieyiButton setTitle:@"同意《用户服务协议》" forState:UIControlStateNormal];
+    [view3 addSubview:xieyiButton];
+    
+    
+    _registerButton = [[UIButton alloc] init];
+    [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+    _registerButton.backgroundColor = RGB(38, 107, 255);
+    _registerButton.layer.cornerRadius = 20;
+    _registerButton.layer.masksToBounds = YES;
+    [_registerButton addTarget:self action:@selector(registButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [view3 addSubview:_registerButton];
+    
+    
+    [_selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(view3.mas_top).offset(15);
+        make.left.equalTo(view3.mas_left).offset(50);
+    }];
+    
+    [xieyiButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(view3.mas_top).offset(19);
+        make.left.equalTo(_selectButton.mas_right).offset(5);
+        make.width.equalTo(view3.mas_width).multipliedBy(0.7);
+        make.height.equalTo(view3.mas_height).multipliedBy(0.08);
+    }];
+    
+    
+    [_registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_selectButton.mas_bottom).offset(10);
+        make.centerX.equalTo(view3.mas_centerX);
+        make.height.equalTo(view3.mas_height).multipliedBy(0.2);
+        make.width.equalTo(view3.mas_width).multipliedBy(0.8);
+    }];
+    
+    
+}
+//点击了注册按钮
+-(void)registButtonClick
+{
+    
+    if (_selectButton.selected == YES) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+-(void)selectbuttonClick
+{
+    
+    _selectButton.selected = !_selectButton.selected;
+    if (_selectButton.selected == YES) {
+        _registerButton.enabled = YES;
+    }else
+    {
+        _registerButton.enabled = NO;
+        
+    }
+
+    
+}
+-(void)dismissKeyboardEvent{
+    
+    if(self.view.frame.origin.y<0){
+        [self moveDownKeyBoard];
+    }
+    [_tfUserPass resignFirstResponder];
+    [_tfUserPhone resignFirstResponder];
+    [_tfCodePass resignFirstResponder];
+}
+
+//UITextField method
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if(self.view.frame.origin.y<0){
+        [self moveDownKeyBoard];
+    }
+    if (_tfUserPass == textField) {
+        [_tfUserPass resignFirstResponder];
+    }else  if(_tfCodePass == textField)
+    {
+        [_tfCodePass resignFirstResponder];
+    }else
+    {
+        [_tfUserPhone resignFirstResponder];
+    }
+    return YES;
+}
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    if(self.view.frame.origin.y<0){
+//        [self moveDownKeyBoard];
+//    }
+//    
+//        [_tfUserPass resignFirstResponder];
+//        [_tfCodePass resignFirstResponder];
+//        [_tfUserPhone resignFirstResponder];
+//    
+//}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    CGFloat offset=320-(self.view.frame.size.height-(textField.frame.origin.y+textField.frame.size.height));
+    //    NSLog(@"%f",offset);
+    if(offset>0){
+        
+        [self moveUpKeyBoard:offset];
+    }else{
+        
+        if(!(textField.superview==self.view)){
+            
+            CGFloat superOffset=320-(H(self.view)-(Y_H(textField.superview)));
+            //            NSLog(@"%f",superOffset);
+            if(superOffset>0){
+                
+                [self moveUpKeyBoard:superOffset];
+            }
+        }
+    }
+    
+    if (textField == _tfUserPhone || textField == _tfCodePass) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+}
+-(void)moveDownKeyBoard{
+    
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"moveDownKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView commitAnimations];
+}
+
+-(void)moveUpKeyBoard:(CGFloat)offset{
+    
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"moveUpKeyBoard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView commitAnimations];
+    
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

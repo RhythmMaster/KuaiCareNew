@@ -1,0 +1,73 @@
+//
+//  ViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/24.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+#import "ViewController.h"
+#import "AppDelegate.h"
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self startIntroduce];
+    
+}
+//是否启动
+-(void)startIntroduce
+{
+    NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"FirstLogin"];
+    if ([str isEqualToString:@"欢迎登陆"]) {
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        app.window.rootViewController=loginVC;
+        
+    }else
+    {
+        [self initUI];
+    }
+    
+}
+-(void)initUI
+{
+    UIImageView *backView = [[UIImageView alloc] init];
+    backView.userInteractionEnabled = YES;//打开背景图片的可交互性
+    backView.frame = CGRectMake(0, 0, KCWIDTH, KCHEIGHT);
+    backView.image = [UIImage imageNamed:@"icon_welcome"];
+    [self.view addSubview:backView];
+    
+    UIButton *backButton = [[UIButton alloc] init];
+    [backView addSubview:backButton];
+    [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(backView.mas_centerX);
+        make.top.equalTo(backView.mas_bottom).offset(-120);
+        make.left.offset(60);
+        make.height.equalTo(backView.mas_height).multipliedBy(0.1);
+        
+    }];
+    [backButton setBackgroundImage:[UIImage imageNamed:@"icon_welcome_bt"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(tiyanButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+}
+-(void)tiyanButtonClick
+{
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    AppDelegate *app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    app.window.rootViewController=nav;
+    [self.navigationController pushViewController:loginVC animated:YES];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@end

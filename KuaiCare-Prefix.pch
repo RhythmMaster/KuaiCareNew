@@ -1,0 +1,220 @@
+//
+//  KuaiCare-Prefix.pch
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/24.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#ifndef KuaiCare_Prefix_pch
+#define KuaiCare_Prefix_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+
+#define  KCHEIGHT  [[UIScreen mainScreen] bounds].size.height
+#define  KCWIDTH  [[UIScreen mainScreen] bounds].size.width
+#define RGB(a,b,c)  [UIColor colorWithRed:a/255.0 green:b/255.0 blue:c/255.0 alpha:2.0]
+//取view的坐标及长宽
+#define W(view)    view.frame.size.width
+#define H(view)    view.frame.size.height
+#define X(view)    view.frame.origin.x
+#define Y(view)    view.frame.origin.y
+
+#define Y_H(view) Y(view) + H(view)
+#define X_W(view) X(view) + W(view)
+
+
+
+// 缩放比
+#define kScale ([UIScreen mainScreen].bounds.size.width) / 375
+
+#define hScale ([UIScreen mainScreen].bounds.size.height) / 667
+
+//屏幕宽度 高度
+#define kScreenW ([UIScreen mainScreen].bounds.size.width)
+#define kScreenH ([UIScreen mainScreen].bounds.size.height)
+
+//三原色的设置
+#define kRGBA(R,G,B,A) ([UIColor colorWithRed:(R)/255.0 green:(G)/255.0 blue:(B)/255.0 alpha:A])
+
+#define kGrayColor kRGBA(179, 179, 179, 1.0)
+#define kBlueColor kRGBA(38, 107, 255, 1.0)
+#define kLightGrayColor kRGBA(240, 240, 240, 1.0)
+
+//把self转化为 __weak __block的方式, 方便的在block中使用而不导致内存循环应用问题
+//在宏中使用 \ 可以换行
+#define WK(weakSelf) \
+__block __weak __typeof(&*self)weakSelf = self;\
+
+//获取当前应用程序AppDelegate对象
+#define kAppdelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+
+
+
+#import "AFNetworking.h"
+#import "YYKit.h"
+#import "UIKit+AFNetworking.h"
+#define MAS_SHORTHAND_GLOBALS
+#import "Masonry.h"
+#import "MJRefresh.h"
+#import "LoginViewController.h"
+#import "UIBarButtonItem+KCBarButtonItem.h"
+#import "RegisterViewController.h"
+#import "MBProgressHUD.h"
+#import "MLTransition.h"
+
+//图片处理方面
+#import "SDImageCache.h"
+#import "UIImageView+WebCache.h"
+#import "UIImageView+AFNetworking.h"//没有用过
+#import "UIImageView+HighlightedWebCache.h"//没有用过
+
+
+
+#import "NSString+ToURL.h"
+#import "AppDelegate+Custom.h"
+#import "NSObject+ParseJSON.h"
+#import "NSObject+NetWorking.h"
+#import "UIView+HUD.h"
+#import "UIView+TZLFrame.h"
+#import "UITextField+TZLShake.h"
+#import "SVProgressHUD.h"
+
+//定位
+#import "GYZChooseCityController.h"
+
+#import "TZLFactory.h"
+#import "CJLabel.h"
+#import "UITableView+FDTemplateLayoutCell.h"
+#import "MBProgressHUD+NJ.h"
+#import "AddressBookViewController.h"
+
+//静态工厂
+#import "HZDataHandler.h"
+
+#import "Utils.h"
+
+//测试服务器
+//#define kBasePath @"http://192.168.1.98:8686/wisdom_medical/"
+//#define kBaseDownPath @"http://192.168.1.98:8686/mss_file/"
+//#define KCBaseURLString @"http://192.168.1.98:8686/wisdom_medical/"
+
+
+//盛成龙
+//#define kBasePath @"http://192.168.1.22:8080/mss"
+//#define kBaseDownPath @"http://192.168.1.22:8080/mss_file"
+//#define KCBaseURLString @"http://192.168.1.22:8080/mss"
+//#define KCBaseURLString @"http://192.168.1.98:8686/wisdom_medical/"
+
+//tzl----唐伟
+//#define kBasePath @"http://192.168.1.43:8013/mss"
+//#define kBaseDownPath @"http://192.168.1.43:8013/mss_file/"
+//#define KCBaseURLString @"http://192.168.1.43:8013/mss"
+//统一附件下载接口
+#define kDownloadPath @"/app/mss_file/common/download"
+//测试
+//#define kBasePath @"http://192.168.1.98:8686/wisdom_medical/"
+//#define kBaseDownPath @"http://192.168.1.98:8686/mss_file/"
+
+
+//正式
+#define kBasePath @"http://114.215.203.199:8686/wisdom_medical/"
+#define KCBaseURLString @"http://114.215.203.199:8686/wisdom_medical/"
+#define kBaseDownPath @"http://114.215.203.199:8585/mss_file/"
+
+//订单详情
+#define kOrderInfoPath @"/app/patient/order/orderInfo"
+//未登录首页
+#define kOrderIndexPath @"/app/patient/order/index"
+
+
+//预约上门护理
+#define kItemInfoPath @"/app/patient/order/itemInfo"
+
+//医护选择
+#define kHealthCarePath @"/app/patient/order/healthCare"
+
+//订单列表
+#define kLstOrderPath @"/app/patient/order/lstOrder"
+//删除订单
+#define kDeleteOrderPath @"/app/patient/order/deleteOrder"
+//确认服务
+#define kConfirmServicePath @"/app/patient/order/confirmService"
+//评价订单
+#define kOrderEvaluatePath @"/app/patient/order/orderEvaluate"
+//保存评价
+#define kEvaluateSavePath @"/app/patient/order/evaluateSave"
+//查看评价
+#define kEvaluateDisplayPath @"/app/patient/order/evaluateDisplay"
+
+#define kMedicDisplayPath @"/app/patient/order/medicDisplay"
+
+
+#define kRandomCode @"/app/common/randomCode"
+#define kRegisterPath @"/app/medic/index/register"
+#define kLoginPath @"/app/medic/index/login"
+#define kForgetPath @"/app/medic/index/retrievePass"
+#define kAboutUSPath @"/app/common/aboutUs"
+#define kLogOutPath @"/app/common/loginOut"
+
+
+#define kPwdByPhonePath @"/app/common/pwdbyphone"
+#define kPwdByOldPwdPath @"/app/common/pwdbyoldpwd"
+
+//个人中心
+#define kIndexPath @"/app/patient/mycenter/index"
+
+//消息中心
+#define kMyMsgPath @"/app/common/myMsg"
+#define kViewMsgPath @"/app/common/viewMsg"
+
+
+//更换头像
+#define kHeadChangePath @"/app/mss_file/iospatient/headChange"
+
+
+//订单支付宝支付
+#define kAliPayPath @"/app/patient/order/aliPay"
+
+
+//余额明细接口
+#define kMycashchangePath @"/app/common/mycashchange"
+//体现信息
+#define kWaitWithdrawDepositPath @"/app/patient/mycenter/waitWithdrawDeposit"
+//提现接口
+#define kWithdrawDepositPath @"/app/patient/mycenter/withdrawDeposit"
+//提现历史记录
+#define kWithdrawDepositListPath @"/app/patient/mycenter/withdrawDepositList"
+//充值
+#define kRechargePath @"/app/patient/mycenter/recharge"
+
+
+//就诊人修改
+#define kSeeDoctorPersonViewPath @"/app/patient/mycenter/seedoctorpersonView"
+
+//就诊人保存
+#define kEditseedoctorpersonPath @"/app/patient/mycenter/editseedoctorperson"
+
+
+
+
+
+
+#import "HZIsClickBtn.h"
+
+
+
+
+
+
+
+
+
+//支付宝
+#define kAlipayAppID @"2016110202479347"
+#define kAlipayPrivateKey @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALwCnkPMEvOlZD+FTRd7vVfQP/6Raw68HYoMdwuqSdoqsIVPzukCDMCHrOd0a/R4FE2rz/NNCsQ8rcq2KS+vIbjo4Qg9Lj17nqtOPKt8kS7KfAOwaLUjXauGXr7/MiF73f9dHxPzP0QqzGD3DCjia9YIodpccureuM/6kMrtMUGTAgMBAAECgYBY+Yg6n45sfd4WbZhRP78YmrZeXCVlIMN9/G4uOBWhSMinHmDWRqEQUGUUWDVqyZUaOPA9vT0WJ307zL9rEJ+NGVyvIc382IkZcvHfIHOPnykOrVhpAjqOHNMVry40PyXYUqy4pbhadUarQYjyAJqwTKwhrTJDHK0r07VIg3dwSQJBAO3Y0NxIaQ1Yo6tlFJpLC9shZOrMGuzt2AvkZFBslb+OGXPycqs6DbvNxn9kWJdm+4076Er+aVOc2dlY5VHkEAcCQQDKXBC6mh47/X5BRsEu7p4yAAAGvFHinLFBANNJ+2zFjDLNLRkLVANFB6EC3fS2tl3Errw/ull0MY7lp/PMJkcVAkEA0OheUw160BEp+NIYrYj7Ceaj+CN8BtzFpXRes9EcGpsaOiAandCo3WrZTW167siybBPRbYVWR+193wzYpvv1IwJAF1V4ZFwDIn2/gj1rZ0MCoNdZKW2rr4rL8afrtTs1tq3M6dXKboD4g4w2p8L6RdtPgq93a43MZNaWGKs+NIsxZQJAAOJfR6cNXzjPd7N9qMdlwcK0KPxQVAkpPhj+mNyxJcAz5tZNKU+goQxQu41vdN3kD+DAiC01tIoo59jaKh2UVw=="
+
+
+#endif /* KuaiCare_Prefix_pch */

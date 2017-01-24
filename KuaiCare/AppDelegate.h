@@ -8,10 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+typedef NS_ENUM(NSUInteger, TZLAlipayType){
+    TZLAlipayTypeOrderMode,
+    TZLAlipayTypeRechangeMode,
+};
 
+@property (strong, nonatomic) UIWindow *window;
+- (void)showHomeViewController;
+
+@property(nonatomic) BOOL haveLogin;
+
+@property(nonatomic) NSInteger loginState;
+
+@property(nonatomic, strong) NSString *rechange;
+
+@property(nonatomic) TZLAlipayType alipayType;
+
+@property(nonatomic, strong) NSDictionary *orderDic;
 
 @end
 

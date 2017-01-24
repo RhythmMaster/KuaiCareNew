@@ -1,0 +1,57 @@
+//
+//  OrderSixTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/11/3.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "OrderSixTableViewCell.h"
+
+@implementation OrderSixTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _button1 = [[UIButton alloc] init];
+        _button2 = [[UIButton alloc] init];
+        
+        [self.contentView addSubview:_button1];
+        [self.contentView addSubview:_button2];
+
+        _button1.backgroundColor = [UIColor redColor];
+        _button2.backgroundColor = [UIColor redColor];
+        
+    }
+    return self;
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-5);
+        make.top.offset(5);
+        make.height.equalTo(self.mas_height).multipliedBy(0.8);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+    }];
+    [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_button2.mas_left).offset(-5);
+        make.top.offset(5);
+        make.height.equalTo(self.mas_height).multipliedBy(0.8);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+    }];
+    
+    
+    
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

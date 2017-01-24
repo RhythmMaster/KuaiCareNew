@@ -1,0 +1,101 @@
+//
+//  HuliThirdTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/26.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "HuliThirdTableViewCell.h"
+
+@implementation HuliThirdTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _agressLabel = [[UILabel alloc] init];
+        _rightLabel = [[UILabel alloc] init];
+        _wrongLabel = [[UILabel alloc] init];
+        _freeButton = [[UIButton alloc] init];
+        _wrongButton = [[UIButton alloc] init];
+        _rightButton = [[UIButton alloc] init];
+        
+        
+        [self.contentView addSubview:_agressLabel];
+        [self.contentView addSubview:_rightLabel];
+        [self.contentView addSubview:_wrongLabel];
+        [self.contentView addSubview:_freeButton];
+        [self.contentView addSubview:_wrongButton];
+        [self.contentView addSubview:_rightButton];
+
+        
+        _agressLabel.backgroundColor = [UIColor redColor];
+        _wrongButton.backgroundColor = [UIColor redColor];
+        _wrongLabel.backgroundColor = [UIColor redColor];
+        _freeButton.backgroundColor = [UIColor redColor];
+        _rightButton.backgroundColor = [UIColor redColor];
+        _rightLabel.backgroundColor = [UIColor redColor];
+
+        
+        
+    }
+    return self;
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_agressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(10);
+        make.left.offset(10);
+        make.bottom.offset(-10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.4);
+    }];
+    [_freeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_agressLabel.mas_right).offset(1);
+        make.top.offset(10);
+        make.bottom.offset(-10);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+    }];
+    
+    [_wrongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-10);
+        make.top.offset(15);
+        make.bottom.offset(-15);
+        make.width.equalTo(self.mas_height).multipliedBy(0.3);
+    }];
+    [_wrongButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_wrongLabel.mas_left).offset(-5);
+        make.top.offset(15);
+        make.bottom.offset(-15);
+        make.width.equalTo(self.mas_height).multipliedBy(0.3);
+        
+    }];
+    [_rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_wrongButton.mas_left).offset(-10);
+        make.top.offset(15);
+        make.bottom.offset(-15);
+        make.width.equalTo(self.mas_height).multipliedBy(0.3);
+        
+    }];
+    
+    [_rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_rightLabel.mas_left).offset(-5);
+        make.top.offset(15);
+        make.bottom.offset(-15);
+        make.width.equalTo(self.mas_height).multipliedBy(0.3);
+    }];
+    
+    
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

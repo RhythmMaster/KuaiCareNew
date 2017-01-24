@@ -1,0 +1,74 @@
+//
+//  YuerDetailViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/29.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "YuerDetailViewController.h"
+#import "YuerDetailTableViewCell.h"
+@interface YuerDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic ,strong)UITableView *tableView;
+@end
+
+@implementation YuerDetailViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"余额明细";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"icon-白色返回" name:@"" target:self action:@selector(leftClick)];
+    [self creatTableView];
+
+}
+-(void)creatTableView
+{
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor yellowColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    
+}
+-(void)leftClick
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 15;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellid = @"cell";
+    YuerDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
+    if (cell == nil) {
+        cell = [[YuerDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    }
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

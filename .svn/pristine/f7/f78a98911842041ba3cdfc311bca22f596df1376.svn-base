@@ -1,0 +1,182 @@
+//
+//  EditjiuzhenViewController.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/27.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "EditjiuzhenViewController.h"
+
+@interface EditjiuzhenViewController ()
+@property (nonatomic ,strong)UITextField *textfield;
+@end
+
+@implementation EditjiuzhenViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = RGB(242, 242, 242);
+    [self.navigationController.navigationBar setBarTintColor:RGB(38, 107, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont systemFontOfSize:19],
+       NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    self.navigationItem.title = @"编辑就诊人";
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem withBarItem:@"icon-白色返回" name:@"" target:self action:@selector(leftClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem withBarItem:@"" name:@"保存" target:self action:@selector(rightClick)];
+    [self initUI];
+
+    
+}
+-(void)initUI
+{
+    
+    NSArray *nameArray = [[NSArray alloc] initWithObjects:@"头像",@"姓名",@"电话",@"性别",@"出生日期", @"身份证号",@"医保卡号",nil];
+    NSArray *textfiledArray = [[NSArray alloc ] initWithObjects:@"请设置出生日期",@"请输入身份证号（可不填）",@"请输入医保卡号（可不填）", nil];
+    UIView *backView = [[UIView alloc] init];
+    backView.frame = CGRectMake(0, 64, KCWIDTH, 375);
+    backView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:backView];
+    UIButton *topButton = [[UIButton alloc] init];
+    topButton.frame = CGRectMake(10, 10, 15, 20);
+    topButton.backgroundColor = [UIColor redColor];
+    [backView addSubview:topButton];
+    UILabel *toplabel = [[UILabel alloc] init];
+    toplabel.frame = CGRectMake(35, 10, KCWIDTH*0.9, 20);
+    toplabel.font = [UIFont systemFontOfSize:10];
+    toplabel.text = @"请输入就诊人信息，我们将完全保密，请放心填写";
+    toplabel.font = [UIFont systemFontOfSize:14];
+    [backView addSubview:toplabel];
+    
+    for (int  i = 0; i<7 ; i++) {
+        UILabel *namelabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15+45*(i+1), KCWIDTH*0.25, 20)];
+        namelabel.text = [nameArray objectAtIndex:i];
+        namelabel.font = [UIFont systemFontOfSize:14];
+        [backView addSubview:namelabel];
+        if (i == 0) {
+            UIButton *headButton1 = [[UIButton alloc] init];
+            headButton1.frame = CGRectMake(20+KCWIDTH*0.75, 50, KCWIDTH*0.08, KCWIDTH*0.08);
+            headButton1.backgroundColor = [UIColor redColor];
+            [headButton1 addTarget:self action:@selector(headButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            [backView addSubview:headButton1];
+            
+            UIButton *headButton2 = [[UIButton alloc] init];
+            headButton2.frame = CGRectMake(30+KCWIDTH*0.83, 55, KCWIDTH*0.03, KCWIDTH*0.05);
+            headButton2.backgroundColor = [UIColor redColor];
+            [headButton2 addTarget:self action:@selector(headButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            [backView addSubview:headButton2];
+        }
+        if (i == 1) {
+            UIButton *contactButton = [[UIButton alloc] init];
+            contactButton.frame = CGRectMake(20+KCWIDTH*0.8, 50+45*1, KCWIDTH*0.08, KCWIDTH*0.08);
+            [contactButton addTarget:self action:@selector(contactButtonClick) forControlEvents:UIControlEventTouchUpInside];
+            contactButton.backgroundColor = [UIColor redColor];
+            [backView addSubview:contactButton];
+            
+            UITextField *textfield1 = [[UITextField alloc] initWithFrame:CGRectMake(KCWIDTH*0.22, 60+45*1, KCWIDTH*0.7, 20)];
+            textfield1.font = [UIFont systemFontOfSize:12];
+            textfield1.placeholder = @"请输入联系人姓名或从通讯录选择";
+            [backView addSubview:textfield1];
+        }
+        if (i == 2) {
+            UITextField *textfield2 = [[UITextField alloc] initWithFrame:CGRectMake(KCWIDTH*0.5, 60+45*2, KCWIDTH*0.6, 20)];
+            textfield2.font = [UIFont systemFontOfSize:12];
+            textfield2.placeholder = @"请输入联系人的手机号码";
+            [backView addSubview:textfield2];
+        }
+        
+        if (i == 3) {
+            UIButton *selectbutton1 = [[UIButton alloc] init];
+            [selectbutton1 addTarget:self action:@selector(selectButtonclick1) forControlEvents:UIControlEventTouchUpInside];
+            selectbutton1.frame = CGRectMake(KCWIDTH*0.65, 50+45*3, 30, 30);
+            selectbutton1.backgroundColor = [UIColor redColor];
+            [backView addSubview:selectbutton1];
+            
+            UILabel *nanlabel = [[UILabel alloc] init];
+            nanlabel.frame = CGRectMake(KCWIDTH*0.65+30, 50+45*3, 20, 20);
+            nanlabel.text = @"男";
+            [backView addSubview:nanlabel];
+            
+            
+            UIButton *selectbutton2 = [[UIButton alloc] init];
+            [selectbutton2 addTarget:self action:@selector(selectButtonclick2) forControlEvents:UIControlEventTouchUpInside];
+            selectbutton2.frame = CGRectMake(KCWIDTH*0.65+55, 50+45*3, 30, 30);
+            selectbutton2.backgroundColor = [UIColor redColor];
+            [backView addSubview:selectbutton2];
+            
+            UILabel *nvlabel = [[UILabel alloc] init];
+            nvlabel.frame = CGRectMake(KCWIDTH*0.65+85, 50+45*3, 20, 20);
+            nvlabel.text = @"女";
+            [backView addSubview:nvlabel];
+
+            
+        }
+    }
+   
+    for (int i = 0; i<7; i++) {
+        UILabel *linelabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 45*(i+1) , KCWIDTH-5, 1)];
+        linelabel.backgroundColor = RGB(242, 242, 242);
+        [backView addSubview:linelabel];
+    }
+    for (int i = 5; i<8; i++) {
+        UITextField *textfiled = [[UITextField alloc] init];
+        textfiled.frame = CGRectMake(KCWIDTH*0.5, 60+45*(i-1), KCWIDTH*0.5, 20);
+        textfiled.placeholder = [textfiledArray objectAtIndex:i-5];
+        textfiled.font = [UIFont systemFontOfSize:12];
+        //textfiled.textAlignment = NSTextAlignmentRight;
+        [backView addSubview:textfiled];
+        
+    }
+    
+
+    
+}
+-(void)selectButtonclick1
+{
+    
+}
+-(void)selectButtonclick2
+{
+    
+    
+    
+}
+-(void)headButtonClick:(UIButton*)headButton
+{
+    
+}
+-(void)contactButtonClick
+{
+    
+    
+    
+}
+-(void)leftClick
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+-(void)rightClick
+{
+    
+    
+    
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

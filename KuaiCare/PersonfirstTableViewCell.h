@@ -1,0 +1,16 @@
+//
+//  PersonfirstTableViewCell.h
+//  KuaiCare
+//
+//  Created by macbook user on 16/10/29.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PersonfirstTableViewCell : UITableViewCell
+@property (nonatomic ,strong)UIImageView *personheadButton;
+@property (nonatomic ,strong)UILabel *phoneLabel;
+@property (nonatomic ,strong)UIButton *qiandaoButton;
+
+@end

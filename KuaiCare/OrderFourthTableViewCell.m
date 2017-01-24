@@ -1,0 +1,112 @@
+//
+//  OrderFourthTableViewCell.m
+//  KuaiCare
+//
+//  Created by macbook user on 16/11/3.
+//  Copyright © 2016年 macbook user. All rights reserved.
+//
+
+#import "OrderFourthTableViewCell.h"
+
+@implementation OrderFourthTableViewCell
+-(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _hejilabel = [[UILabel alloc] init];
+        _totalpricelabel = [[UILabel alloc] init];
+        _linelabel = [[UILabel alloc] init];
+        _jifenlabel = [[UILabel alloc] init];
+        _reducepricelabel = [[UILabel alloc] init];
+        _shijilabel = [[UILabel alloc] init];
+        _realpricelabel = [[UILabel alloc] init];
+
+        
+        [self.contentView addSubview:_hejilabel];
+        [self.contentView addSubview:_totalpricelabel];
+        [self.contentView addSubview:_linelabel];
+        [self.contentView addSubview:_jifenlabel];
+        [self.contentView addSubview:_reducepricelabel];
+        [self.contentView addSubview:_shijilabel];
+        [self.contentView addSubview:_realpricelabel];
+
+        _hejilabel.backgroundColor = [UIColor redColor];
+        _totalpricelabel.backgroundColor = [UIColor redColor];
+        _linelabel.backgroundColor = [UIColor redColor];
+        _jifenlabel.backgroundColor = [UIColor redColor];
+        _reducepricelabel.backgroundColor = [UIColor redColor];
+        _shijilabel.backgroundColor = [UIColor redColor];
+        _realpricelabel.backgroundColor = [UIColor redColor];
+    }
+    
+    
+    return self;
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [_totalpricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(8);
+        make.right.offset(-5);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+    }];
+    [_hejilabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(_totalpricelabel.mas_left).offset(-5);
+        make.top.offset(8);
+        make.width.equalTo(self.mas_width).multipliedBy(0.2);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+
+    }];
+    [_linelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_hejilabel.mas_bottom).offset(8);
+        make.height.equalTo(_hejilabel.mas_height).multipliedBy(0.1);
+        make.left.offset(0);
+        make.width.equalTo(self.mas_width);
+    }];
+    
+    [_jifenlabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_linelabel.mas_bottom).offset(8);
+        make.left.offset(10);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+    }];
+    
+    [_shijilabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_jifenlabel.mas_bottom).offset(8);
+        make.left.offset(10);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+    }];
+    
+    [_reducepricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_linelabel.mas_bottom).offset(8);
+        make.right.offset(-5);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+
+
+    }];
+    
+    [_realpricelabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_reducepricelabel.mas_bottom).offset(8);
+        make.right.offset(-5);
+        make.height.equalTo(self.mas_height).multipliedBy(0.18);
+        make.width.equalTo(self.mas_width).multipliedBy(0.3);
+
+    }];
+    
+}
+- (void)awakeFromNib {
+    // Initialization code
+    [super awakeFromNib];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end
